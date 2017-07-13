@@ -7,7 +7,7 @@ import org.springframework.context.support.GenericXmlApplicationContext;
 import myspring.di.xml.Hello;
 import myspring.di.xml.Printer;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class HelloBeanJunitTest {
 	ApplicationContext context;
@@ -19,7 +19,8 @@ public class HelloBeanJunitTest {
 		context = new GenericXmlApplicationContext("classpath:config/beans.xml");
 	}
 	
-	@Test
+	@Test 
+	@Ignore
 	public void test1() {
 		//2. getBean() 호출
 		Hello hello = (Hello)context.getBean("hello");
@@ -31,6 +32,16 @@ public class HelloBeanJunitTest {
 		//StringPrinter getBean()
 		Printer printer = context.getBean("printer", Printer.class);
 		assertEquals("Hello Spring", printer.toString());
+	}
+	
+	@Test
+	public void test2() {
+		//2. getBean() 호출
+		Hello hello = (Hello)context.getBean("hello");
+		
+		Hello hello2 = (Hello)context.getBean("hello");
+		
+		assertSame(hello, hello2);
 	}
 
 }
