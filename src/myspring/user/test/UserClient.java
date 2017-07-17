@@ -26,7 +26,7 @@ public class UserClient {
 	UserService service;
 
 	@Test
-	@Ignore
+//	@Ignore
 	public void updateUserTest() {
 		service.updateUser(new UserVO("gildong", "홍길동2", "남2", "서울2"));
 
